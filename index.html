@@ -1,60 +1,20 @@
 <html>
 <head>
-    <title>I need the 'fetti</title>
+    <title>Fetti</title>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-    <script type="text/javascript">
-        var count = 200;
-        var defaults = {
-            origin: { y: 0.7 }
-        };
-
-        var snd = new Audio("airhorn.mp3")
-        snd.preload = 'auto';
-        snd.load();
-
-        function inner(particleRatio, opts) {
-            confetti({
-                ...defaults,
-                ...opts,
-                particleCount: Math.floor(count * particleRatio)
-            });
-        }
-
-        function fire() {
-            var click = snd.cloneNode();
-            click.play();
-
-            inner(0.25, {
-                spread: 26,
-                startVelocity: 55,
-            });
-            inner(0.2, {
-                spread: 60,
-            });
-            inner(0.35, {
-                spread: 100,
-                decay: 0.91,
-                scalar: 0.8
-            });
-            inner(0.1, {
-                spread: 120,
-                startVelocity: 25,
-                decay: 0.92,
-                scalar: 1.2
-            });
-            inner(0.1, {
-                spread: 120,
-                startVelocity: 45,
-            });
-        }
-    </script>
+    <script src="confetti.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="center">
-            <button class="button-53" role="button" onclick="fire()">I need the 'fetti.</button>
+    <div class="flex-container">
+        <div class="row">
+            <div class="flex-item">
+                <button class="button-74" role="button" onclick="fire()">I need the 'fetti.</button>
+            </div>
         </div>
     </div>
+    <footer id="footer">
+        <div>Sometimes you're having a shit day and just need the 'fetti.</div>
+    </footer>
 </body>
 </html>
