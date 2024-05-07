@@ -4,10 +4,22 @@ var defaults = {
 };
 
 const AudioContext = window.AudioContext || window.webkitAudioContext;
-const audioCtx = new AudioContext();
-var snd = new Audio("airhorn.mp3")
-snd.preload = 'auto';
-snd.load();
+//const audioCtx = new AudioContext();
+//var snd = new Audio("airhorn.mp3")
+//snd.preload = 'auto';
+//snd.load();
+
+const audioPlay = async url => {
+    const context = new AudioContext();
+    const source = context.createBufferSource();
+    const audioBuffer = await fetch(url)
+      .then(res => res.arrayBuffer())
+      .then(ArrayBuffer => context.decodeAudioData(ArrayBuffer));
+  
+    source.buffer = audioBuffer;
+    source.connect(context.destination);
+    source.start();
+};
 
 function inner(particleRatio, opts) {
     confetti({
@@ -18,8 +30,9 @@ function inner(particleRatio, opts) {
 }
 
 function fire() {
-    var click = snd.cloneNode();
-    click.play();
+    //var click = snd.cloneNode();
+    //click.play();
+    audioPlay("https://ineedthefetti.github.io/airhorn.mp3")
 
     inner(0.25, {
         spread: 26,
